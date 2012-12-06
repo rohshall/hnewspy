@@ -3,7 +3,8 @@
 from urllib.request import urlopen
 import json
 
-feed = urlopen("http://hndroidapi.appspot.com/news/format/json/page/").read()
+response = urlopen("http://hndroidapi.appspot.com/news/format/json/page/")
+feed = response.read()
 print(type(feed))
 articles_map = json.loads(feed.decode("utf-8"))
 print(type(articles_map))
