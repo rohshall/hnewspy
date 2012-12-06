@@ -1,4 +1,4 @@
 hnewspy
 =======
 
-Hacker News Reader in Python
+Hacker News Reader in Python3
