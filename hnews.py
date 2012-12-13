@@ -5,9 +5,8 @@ import json
 
 response = urlopen("http://hndroidapi.appspot.com/news/format/json/page/")
 feed = response.read()
-print(type(feed))
+response.close()
 articles_map = json.loads(feed.decode("utf-8"))
-print(type(articles_map))
 articles = articles_map["items"]
 for article in articles:
   if article.get("item_id"):
