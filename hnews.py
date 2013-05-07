@@ -1,18 +1,14 @@
 #!/usr/bin/env python3
 
 from urllib.request import urlopen
-import json
+import xml.etree.ElementTree as etree
 
-response = urlopen("http://hndroidapi.appspot.com/news/format/json/page/")
+response = urlopen("https://news.ycombinator.com/rss")
 feed = response.read()
 response.close()
-articles_map = json.loads(feed.decode("utf-8"))
-articles = articles_map["items"]
+root = etree.fromstring(feed)
+articles = root.find('channel').findall('item')
 for article in articles:
-  if article.get("item_id"):
-    print(article["item_id"] + ": " + article["title"])
-    if article.get("url"):
-      print(article["url"])
+    print(article.find("title").text)
+    print(article.find("link").text)
     print()
-
-
